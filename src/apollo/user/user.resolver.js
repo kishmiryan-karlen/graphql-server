@@ -10,5 +10,12 @@ module.exports = {
         id: args.id
       }).first();
     }
+  },
+  User: {
+    documents: async (parent, args, context, info) => {
+      return await knex('documents').where({
+        user_id: parent.id,
+      });
+    },
   }
 };

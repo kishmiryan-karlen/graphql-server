@@ -46,14 +46,24 @@ const documentsTable = knex.schema.hasTable('documents').then(exists => {
       table.integer('user_id').unsigned();
       table.foreign('user_id').references('users.id');
       table.timestamps();
-    });
+    }).then(() => {
+      return knex('documents').insert([{
+        name: 'document 1',
+        type: 'pdf',
+        user_id: 1
+      }, {
+        name: 'document 2',
+        type: 'docx',
+        user_id: 1
+      }])
+    })
   }
 });
 
 usersTable.then(documentsTable);
 
 knex.on('query', data => {
-  console.log('\x1b[35m>>> sql> \x1b[35m', knex.raw(data.sql, data.bindings).toString());
+  console.log('\n\x1b[35m>>> sql> \x1b[35m', knex.raw(data.sql, data.bindings).toString(), '\n');
 });
 
 module.exports = knex;

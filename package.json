@@ -8,6 +8,7 @@
     "db:stop": "docker-compose down"
   },
   "dependencies": {
+    "apollo-resolvers": "^1.4.1",
     "apollo-server": "^2.3.3",
     "apollo-server-express": "^2.3.3",
     "cookie-parser": "~1.4.3",

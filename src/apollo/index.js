@@ -1,15 +1,17 @@
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
+const { combineResolvers } = require('apollo-resolvers');
+const linkSchema = require('./link.schema');
 const { userResolver, userSchema } = require('./user');
+const { documentResolver, documentSchema } = require('./document');
 
 module.exports = new ApolloServer({
-  typeDefs: gql`
-    type Query {
-      users: [User]
-      user(id: ID!): User
-    }
-    ${userSchema}
-  `,
-  resolvers: {
-    ...userResolver
-  },
+  typeDefs: [
+    linkSchema,
+    userSchema,
+    documentSchema,
+  ],
+  resolvers: combineResolvers([
+    userResolver,
+    documentResolver,
+  ]),
 });
