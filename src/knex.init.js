@@ -63,7 +63,7 @@ const documentsTable = knex.schema.hasTable('documents').then(exists => {
 usersTable.then(documentsTable);
 
 knex.on('query', data => {
-  console.log('\n\x1b[35m>>> sql> \x1b[35m', knex.raw(data.sql, data.bindings).toString(), '\n');
+  console.log('\x1b[35m>>> sql> \x1b[35m', knex.raw(data.sql, data.bindings).toString(), '\n');
 });
 
 module.exports = knex;
