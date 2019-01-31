@@ -1,5 +1,5 @@
 # graphql-server
-GraphQL Server Examples with ExpressJS
+GraphQL Server Example with ExpressJS
 
 ## prerequisites
 - NodeJS
